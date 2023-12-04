@@ -18,3 +18,25 @@
  input:focus {
      outline: none !important;
  }
+ .header{
+    color: white;
+ }
+ .header  .dropdown-menu svg, .header .buttons svg{
+    fill: white;
+ }
+
+.profile #dropdown-menu{
+    display: none;
+ }
+ .profile.active #dropdown-menu{
+    display: initial;
+ }
+ .buttons .button_to{
+    display: flex !important;
+ }
+ .logout-mobile{
+        position: relative;
+        width: 100%;
+        padding: 5px 10px;
+        margin: auto 5px;
+ }
