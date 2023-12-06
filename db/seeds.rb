@@ -6,10 +6,17 @@
 #2 users 
 users = []
 User.all.destroy_all
-3.times do 
+2.times do 
     user = FactoryBot.create(:user)
-    2.times{ FactoryBot.create(:product, user: user)}
     users << [user.email, user.password]
 end
+
+#products 
+2.times{ FactoryBot.create(:product, user: User.first)}
+
+#conversations 
+4.times{ FactoryBot.create(:conversation, product: Product.all.sample)}
+
+
 
 puts "generated users #{users}"
