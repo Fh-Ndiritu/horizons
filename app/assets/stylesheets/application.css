@@ -30,9 +30,14 @@
  }
  .profile.active #dropdown-menu{
     display: initial;
+
  }
+ #dropdown-menu   svg {
+       fill: white;
+    }
  .buttons .button_to{
     display: flex !important;
+    align-items: center;
  }
  .logout-mobile{
         position: relative;

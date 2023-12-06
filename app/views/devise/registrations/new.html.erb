@@ -1,16 +1,16 @@
 <section class="mt-0 bg-gray-100  w-full h-screen py-12">
   <div class="w-full lg:w-4/12 px-4 mx-auto pt-0">
-    <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-xl bg-white rounded-lg border-0">
+    <div class="login-card">
       <div class="rounded-t mb-0 px-6 py-6">
-            <h1 class="text-center w-full mb-4 text-lg font-bold">Sign Up</h1>
+            <h2 class="text-center w-full mb-4 text-2xl font-bold">Sign Up</h2>
         <div class="btn-wrapper text-center">
           <%= render "devise/shared/links" %>
         </div>
         <hr class="mt-6 border-b-1 border-blueGray-300">
       </div>
-      <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+      <div class="flex-auto px-4 lg:px-10 py-5">
         <div class="text-blueGray-400 text-center mb-3 font-bold">
-          <small>Or sign up with credentials</small>
+              <p>Or sign in with credentials</p>
         </div>
 
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -22,7 +22,7 @@
           </div>
 
           <div class="relative w-full mb-5">
-            <%= f.label :password, class: "block uppercase  text-xs font-bold"%>
+            <%= f.label :password, class: "block uppercase  text-xs font-bold mb-2"%>
             <% if @minimum_password_length %>
             <em class="text-xs">(<%= @minimum_password_length %> characters minimum)</em>
             <% end %>
