@@ -54,12 +54,13 @@ gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-facebook', '~> 9.0'
 gem 'omniauth-google-oauth2', '~> 1.1', '>= 1.1.1'
 gem 'foreman', '~> 0.87.2'
-gem 'faker', '~> 3.2', '>= 3.2.2'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
   gem 'dotenv-rails', '~> 2.8', '>= 2.8.1'
+  gem 'rspec-rails', '~> 6.1'
+  gem 'faker', '~> 3.2', '>= 3.2.2'
 end
 
 group :development do
