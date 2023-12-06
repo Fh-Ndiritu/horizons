@@ -18,7 +18,7 @@
 
           <div class="relative w-full mb-5">
             <%= f.label :email, class: "block uppercase  text-xs font-bold mb-2"%>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email",  placeholder:"example@gmail.com", class:"border-0 px-3   bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"%>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email",  placeholder:"example@gmail.com", class:"login-field"%>
           </div>
 
           <div class="relative w-full mb-5">
@@ -26,16 +26,16 @@
             <% if @minimum_password_length %>
             <em class="text-xs">(<%= @minimum_password_length %> characters minimum)</em>
             <% end %>
-            <%= f.password_field :password, autocomplete: "new-password" , placeholder: "Password", class:"border-0 px-3    bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"%>
+            <%= f.password_field :password, autocomplete: "new-password" , placeholder: "Password", class:"login-field"%>
           </div>
 
           <div class="relative w-full mb-5">
             <%= f.label :password_confirmation, class: "block uppercase  text-xs font-bold mb-2" %>
-            <%= f.password_field :password_confirmation, autocomplete: "new-password" , placeholder:"confirm password", class: "border-0 px-3    bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"%>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password" , placeholder:"confirm password", class: "login-field"%>
           </div>
 
           <div class="actions">
-            <%= f.submit "Sign up", class: "bg-accent cursor-pointer hover:bg-accent2 text-white  text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150" %>
+            <%= f.submit "Sign up", class: "btn-primary" %>
           </div>
         <% end %>
       </div>

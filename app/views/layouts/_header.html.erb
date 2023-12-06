@@ -80,7 +80,7 @@
         </div>
       <% end %>
 
-        <%= link_to "Sell", root_path, class:" px-6 py-2 md:px-8 md:py-2 text-base my-auto bg-white text-accent uppercase font-bold rounded-lg cursor-pointer hover:bg-accent2 hover:text-white"%>
+        <%= link_to "Sell", root_path, class:"btn-secondary"%>
         <% if user_signed_in? %>
         <div class="buttons flex md:hidden"> 
             <%= button_to destroy_user_session_path,
