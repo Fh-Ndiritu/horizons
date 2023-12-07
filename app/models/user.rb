@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_many :conversations, through: :conversation_users
 
 
-
+  scope :not_me, ->(current_user){where.not(id: current_user.id)}
 
 
   def self.from_omniauth(auth)

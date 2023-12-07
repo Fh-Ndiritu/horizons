@@ -1,7 +1,12 @@
 <div id="<%= dom_id conversation %>">
   <p class="my-5">
+    <% if not conversation.product.active %>
+      <sm class="text-xs line-through">Closed Ad</sm>
+    <%  end%>
+    <sm><%= conversation.others(current_user).first&.user_name%></sm>
     <strong class="block font-medium mb-1">Product:</strong>
     <%= conversation.product.title %>
+
   </p>
 
   <% if action_name != "show" %>
