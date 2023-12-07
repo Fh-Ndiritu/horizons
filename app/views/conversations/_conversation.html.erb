@@ -1,7 +1,7 @@
 <div id="<%= dom_id conversation %>">
   <p class="my-5">
     <strong class="block font-medium mb-1">Product:</strong>
-    <%= conversation.product_id %>
+    <%= conversation.product.title %>
   </p>
 
   <% if action_name != "show" %>

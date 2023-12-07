@@ -17,24 +17,24 @@ RSpec.describe "/conversations", type: :request do
   # This should return the minimal set of attributes required to create a valid
   # Conversation. As you add validations to Conversation, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
-
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
 
   describe "GET /index" do
+    before do 
+      product = create(:product, title: "First Product")
+      conversation = create(:conversation, product: product)
+    end
+
     it "renders a successful response" do
-      Conversation.create! valid_attributes
       get conversations_url
-      expect(response).to be_successful
+      expect(response.status).to eq(302)
+
+      visit conversations_url
+      expect(page).to have_content("The first product")
     end
   end
 
   describe "GET /show" do
-    it "renders a successful response" do
+    xit "renders a successful response" do
       conversation = Conversation.create! valid_attributes
       get conversation_url(conversation)
       expect(response).to be_successful
@@ -49,7 +49,7 @@ RSpec.describe "/conversations", type: :request do
   end
 
   describe "GET /edit" do
-    it "renders a successful response" do
+    xit "renders a successful response" do
       conversation = Conversation.create! valid_attributes
       get edit_conversation_url(conversation)
       expect(response).to be_successful
@@ -58,27 +58,27 @@ RSpec.describe "/conversations", type: :request do
 
   describe "POST /create" do
     context "with valid parameters" do
-      it "creates a new Conversation" do
+      xit "creates a new Conversation" do
         expect {
           post conversations_url, params: { conversation: valid_attributes }
         }.to change(Conversation, :count).by(1)
       end
 
-      it "redirects to the created conversation" do
+      xit "redirects to the created conversation" do
         post conversations_url, params: { conversation: valid_attributes }
         expect(response).to redirect_to(conversation_url(Conversation.last))
       end
     end
 
     context "with invalid parameters" do
-      it "does not create a new Conversation" do
+      xit "does not create a new Conversation" do
         expect {
           post conversations_url, params: { conversation: invalid_attributes }
         }.to change(Conversation, :count).by(0)
       end
 
     
-      it "renders a response with 422 status (i.e. to display the 'new' template)" do
+      xit "renders a response with 422 status (i.e. to display the 'new' template)" do
         post conversations_url, params: { conversation: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
@@ -92,14 +92,14 @@ RSpec.describe "/conversations", type: :request do
         skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested conversation" do
+      xit "updates the requested conversation" do
         conversation = Conversation.create! valid_attributes
         patch conversation_url(conversation), params: { conversation: new_attributes }
         conversation.reload
         skip("Add assertions for updated state")
       end
 
-      it "redirects to the conversation" do
+      xit "redirects to the conversation" do
         conversation = Conversation.create! valid_attributes
         patch conversation_url(conversation), params: { conversation: new_attributes }
         conversation.reload
@@ -109,7 +109,7 @@ RSpec.describe "/conversations", type: :request do
 
     context "with invalid parameters" do
     
-      it "renders a response with 422 status (i.e. to display the 'edit' template)" do
+      xit "renders a response with 422 status (i.e. to display the 'edit' template)" do
         conversation = Conversation.create! valid_attributes
         patch conversation_url(conversation), params: { conversation: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
@@ -119,14 +119,14 @@ RSpec.describe "/conversations", type: :request do
   end
 
   describe "DELETE /destroy" do
-    it "destroys the requested conversation" do
+    xit "destroys the requested conversation" do
       conversation = Conversation.create! valid_attributes
       expect {
         delete conversation_url(conversation)
       }.to change(Conversation, :count).by(-1)
     end
 
-    it "redirects to the conversations list" do
+    xit "redirects to the conversations list" do
       conversation = Conversation.create! valid_attributes
       delete conversation_url(conversation)
       expect(response).to redirect_to(conversations_url)

@@ -62,6 +62,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 6.1'
   gem 'faker', '~> 3.2', '>= 3.2.2'
   gem 'factory_bot_rails', '~> 6.4', '>= 6.4.2'
+  gem "capybara"
+  gem "database_cleaner", "~> 2.0"
 end
 
 group :development do
@@ -77,6 +79,6 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem "capybara"
   gem "selenium-webdriver"
 end
+
