@@ -11,4 +11,13 @@ RSpec.describe User, type: :model do
     end
 
 
+    describe 'it has attributes' do 
+        it 'has a user name ' do 
+            user = build(:user)
+            expect(user).not_to be_valid
+            expect(user.errors[:user_name]).to include("can't be blank")
+        end
+    end
+
+
 end
