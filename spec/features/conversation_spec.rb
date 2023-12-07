@@ -1,8 +1,10 @@
 require 'rails_helper'
 
 RSpec.feature 'Conversations lists', type: :feature do 
-    before do
-        user = create(:user, user_name: "John Doe")
+    let(:user){create(:user, user_name: "Jane Doe")}
+    let(:user_two){create(:user, user_name: "John Doe")}
+
+    before(:each) do
         sign_in(user)
     end
 
@@ -23,6 +25,8 @@ RSpec.feature 'Conversations lists', type: :feature do
     scenario "It displays the other chat member in title" do 
         valid_product = create(:product, title: "First Product")
         conversation = create(:conversation, product: valid_product)
+        create(:conversation_user ,conversation: conversation, user: user_two)
+        create(:conversation_user, conversation: conversation, user: user_two )
         visit conversations_path
         expect(page).to have_text("John Doe")
     end
