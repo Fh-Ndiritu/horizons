@@ -1,11 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "conversations/edit", type: :view do
-  let(:conversation) {
-    Conversation.create!(
-      product: nil
-    )
-  }
+  let(:conversation) {create(:conversation)}
 
   before(:each) do
     assign(:conversation, conversation)

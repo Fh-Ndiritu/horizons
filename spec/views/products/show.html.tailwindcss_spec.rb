@@ -2,10 +2,8 @@ require 'rails_helper'
 
 RSpec.describe "products/show", type: :view do
   before(:each) do
-    assign(:product, Product.create!(
-      title: "Title",
-      user: nil
-    ))
+      product =create(:product)
+    assign(:product, product)
   end
 
   it "renders attributes in <p>" do

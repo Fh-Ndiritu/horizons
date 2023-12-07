@@ -2,14 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "conversations/index", type: :view do
   before(:each) do
-    assign(:conversations, [
-      Conversation.create!(
-        product: nil
-      ),
-      Conversation.create!(
-        product: nil
-      )
-    ])
+    assign(:conversations, [create(:conversation), create(:conversation)])
   end
 
   it "renders a list of conversations" do

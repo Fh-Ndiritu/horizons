@@ -2,9 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "conversations/show", type: :view do
   before(:each) do
-    assign(:conversation, Conversation.create!(
-      product: nil
-    ))
+    assign(:conversation, create(:conversation))
   end
 
   it "renders attributes in <p>" do
