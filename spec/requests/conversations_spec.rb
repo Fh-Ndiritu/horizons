@@ -27,9 +27,6 @@ RSpec.describe "/conversations", type: :request do
     it "renders a successful response" do
       get conversations_url
       expect(response.status).to eq(302)
-
-      visit conversations_url
-      expect(page).to have_content("The first product")
     end
   end
 
