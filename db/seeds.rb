@@ -20,7 +20,7 @@ end
 #conversation thread
 Conversation.all.each do |conversation|
     User.all.each do |user|
-        ConversationUser.create(conversation: conversation, user: user)
+        FactoryBot.create(:message, conversation: conversation, user: user)
     end
     
 end
