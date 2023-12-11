@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  
+  get "messages", to: "conversations#index", as: :messages
   resources :conversations, only: [:index, :show, :new]
   
   root to:  'home#index'

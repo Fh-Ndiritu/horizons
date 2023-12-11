@@ -1,13 +1,15 @@
 <div id="<%= dom_id conversation %>">
   <p class="my-5">
+      <sm><%= time_ago_in_words(conversation.messages.last.created_at) %></sm>
     <% if not conversation.product.active %>
       <sm class="text-xs line-through">Closed Ad</sm>
     <%  end%>
-    <sm><%= conversation.others(current_user).first&.user_name%></sm>
+    <sm><%= other_user(conversation)&.user_name%></sm>
     <strong class="block font-medium mb-1">Product:</strong>
     <%= conversation.product.title %>
-
   </p>
+  <p><%= conversation.messages&.last&.content %></p>
+
 
   <% if action_name != "show" %>
     <%= link_to "Show this conversation", conversation, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
