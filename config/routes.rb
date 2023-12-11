@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get  'profile', to: 'profile#edit', as: :profile
+  post 'profile/update'
+  
+
   
   get "messages", to: "conversations#index", as: :messages
   resources :conversations, only: [:index, :show, :new]

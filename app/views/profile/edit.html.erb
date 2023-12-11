@@ -1,0 +1,9 @@
+<div>
+  <h1 class="font-bold text-4xl">Profile#edit</h1>
+  <p>Find me in app/views/profile/edit.html.erb</p>
+  <%= form_with model: current_user, url: "/profile/update", method: :post do |form| %>
+      <%= form.label :avatar, "Upload Picture:" %>
+      <%= form.file_field :avatar %>
+      <%= form.submit "Upload" %>
+  <% end %>
+</div>

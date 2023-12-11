@@ -10,6 +10,9 @@ class User < ApplicationRecord
 
   has_many :products, dependent: :destroy
   has_many :messages, dependent: :destroy
+  has_one_attached :avatar do |attachable| 
+    attachable.variant :thumb, resize_to_limit: [100, 100]
+  end
 
   scope :not_me, ->(current_user){where.not(id: current_user.id)}
 
@@ -20,7 +23,5 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0, 20]
     end
   end
-  
-
 
 end
