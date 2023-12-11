@@ -5,7 +5,6 @@ class ProfileController < ApplicationController
   def update
     current_user.avatar.purge
     current_user.avatar.attach(profile_params[:avatar])
-    current_user.update
   end
 
 

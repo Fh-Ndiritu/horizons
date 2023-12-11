@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'avatars/show'
 
   get  'profile', to: 'profile#edit', as: :profile
   post 'profile/update'

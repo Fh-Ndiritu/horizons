@@ -4,6 +4,6 @@
   <%= form_with model: current_user, url: "/profile/update", method: :post do |form| %>
       <%= form.label :avatar, "Upload Picture:" %>
       <%= form.file_field :avatar %>
-      <%= form.submit "Upload" %>
+      <%= form.submit "Upload", class: "btn-primary" %>
   <% end %>
 </div>

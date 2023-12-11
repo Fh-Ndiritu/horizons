@@ -12,16 +12,14 @@ end
 Product.destroy_all
 #products 
 2.times{ FactoryBot.create(:product, user: User.first, active: true)}
-
 #conversations
  Conversation.destroy_all
 4.times{ FactoryBot.create(:conversation, product: Product.all.sample)}
-
 # conversation thread
 Message.destroy_all
 Conversation.all.each do |conversation|
     User.all.each do |user|
-        FactoryBot.create(:message, conversation: conversation)
+        FactoryBot.create(:message, conversation: conversation, user: user)
     end
     
 end

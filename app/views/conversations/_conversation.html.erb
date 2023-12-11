@@ -8,8 +8,10 @@
     <strong class="block font-medium mb-1">Product:</strong>
     <%= conversation.product.title %>
   </p>
-  <p><%= conversation.messages&.last&.content %></p>
+  <%= conversation.messages&.last&.content %></p>
 
+<%= render partial: "/layouts/avatar", locals: {css_class: "xs", user: other_user(conversation)} %>
+<%= render partial: "/layouts/avatar", locals: {css_class: "xs", user: current_user} %>
 
   <% if action_name != "show" %>
     <%= link_to "Show this conversation", conversation, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>

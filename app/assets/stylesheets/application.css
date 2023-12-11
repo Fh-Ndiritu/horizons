@@ -44,6 +44,34 @@
         width: 100%;
         padding: 5px 10px;
         margin: auto 5px;
- }
+}
+.avatar, .avatar.base{
+   margin: 0;
+   width: 50px;
+   height: 50px;
+   border-radius: 50%;
+   overflow: hidden;
+   border: 1px solid lightgray;
+}
+
+.avatar.base svg text{
+   font-size: 24px;
+}
+
+.avatar.lg{
+      width: 100px;
+      height: 100px;
+}
+.avatar.lg svg text {
+   font-size: 25px;
+}
+.avatar.xs {
+   width: 30px;
+   height: 30px;
+}
+.avatar.xs svg text {
+   font-size: 20px;
+}
+
 
 
