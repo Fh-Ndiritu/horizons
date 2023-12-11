@@ -16,9 +16,13 @@
     <%= form.text_field :title, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
+  <% @product.images.each do |image| %>
+    <%= form.hidden_field :images, multiple: true, value: image.signed_id %>
+  <% end %>
+
   <div class="my-5">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :images %>
+    <%= form.file_field :images, multiple: true,  direct_upload: true, class: "block shadow rounded-md border outline-none px-3 py-2 mt-2" %>
   </div>
 
   <div class="inline">
