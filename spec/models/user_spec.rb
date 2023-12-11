@@ -7,14 +7,10 @@ RSpec.describe User, type: :model do
             association = described_class.reflect_on_association(:products)
             expect(association.macro).to eq(:has_many)
         end
-        
-        it 'has many conversation users' do 
-            association = described_class.reflect_on_association(:conversation_users)
-            expect(association.macro).to eq(:has_many)
-        end
 
-        it 'has many conversations through conversation_users' do 
-            association = described_class.reflect_on_association(:conversations)
+
+        it 'has many messages' do 
+            association = described_class.reflect_on_association(:messages)
             expect(association.macro).to eq(:has_many)
         end
     end
