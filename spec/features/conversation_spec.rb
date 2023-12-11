@@ -11,6 +11,7 @@ RSpec.feature 'Conversations lists', type: :feature do
     scenario "Uses the product as a conversation title" do 
         valid_product = create(:product, title: "First Product")
         conversation = create(:conversation, product: valid_product)
+        create(:message, user: user, conversation: conversation)
         visit conversations_path
         expect(page).to have_text("First Product")
     end
@@ -18,6 +19,7 @@ RSpec.feature 'Conversations lists', type: :feature do
     scenario "Closed/expired product is indicated on conversation" do 
         expired_product = create(:product, title: "First Product", active: false)
         conversation   = create(:conversation, product: expired_product)
+        create(:message, user: user, conversation: conversation)
         visit conversations_path
         expect(page).to have_text("Closed Ad")
     end
