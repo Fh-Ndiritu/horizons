@@ -4,10 +4,11 @@
     <%= product.title %>
   </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">User:</strong>
-    <%= product.user_id %>
-  </p>
+  <div>
+  <% product.images.each do |image| %>
+    <%= image_tag(image.variant(:thumb)) %>
+  <% end %>
+  </div>
 
   <% if action_name != "show" %>
     <%= link_to "Show this product", product, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>

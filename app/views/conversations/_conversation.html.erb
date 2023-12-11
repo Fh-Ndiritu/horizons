@@ -8,6 +8,11 @@
     <strong class="block font-medium mb-1">Product:</strong>
     <%= conversation.product.title %>
   </p>
+
+  <% if conversation.product.images.present? %>
+      <%= image_tag(conversation.product.images.first.variant(:thumb)) %>
+  <% end %>
+
   <%= conversation.messages&.last&.content %></p>
 
 <%= render partial: "/layouts/avatar", locals: {css_class: "xs", user: other_user(conversation)} %>
