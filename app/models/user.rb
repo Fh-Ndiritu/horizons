@@ -9,9 +9,7 @@ class User < ApplicationRecord
 
 
   has_many :products, dependent: :destroy
-  has_many :conversation_users, dependent: :destroy
-  has_many :conversations, through: :conversation_users
-
+  has_many :messages, dependent: :destroy
 
   scope :not_me, ->(current_user){where.not(id: current_user.id)}
 
