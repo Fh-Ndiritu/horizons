@@ -3,15 +3,17 @@
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 
 User.destroy_all
-users  = []
 2.times do 
     user = FactoryBot.create(:user)
-    users << [user.email, user.password]
 end
 
 Product.destroy_all
 #products 
-2.times{ FactoryBot.create(:product, user: User.first, active: true)}
+2.times do 
+    product = FactoryBot.create(:product, user: User.first, active: true)
+end
+
+
 #conversations
  Conversation.destroy_all
 4.times{ FactoryBot.create(:conversation, product: Product.all.sample)}
@@ -26,4 +28,4 @@ end
 
 
 
-puts "generated users #{users}"
+puts "generated users #{User.first.email}"
