@@ -1,25 +1,31 @@
-<div id="<%= dom_id conversation %>">
-  <p class="my-5">
-      <sm><%= time_ago_in_words(conversation.messages.last.created_at) %></sm>
-    <% if not conversation.product.active %>
-      <sm class="text-xs line-through">Closed Ad</sm>
-    <%  end%>
-    <sm><%= other_user(conversation)&.user_name%></sm>
-    <strong class="block font-medium mb-1">Product:</strong>
-    <%= conversation.product.title %>
-  </p>
+<%= link_to conversation, id: dom_id(conversation), class: "w-full hover:bg-gray-400 "  do  %>
+<div class="w-full flex-none flex my-4  border-b border-gray-300 ">
+    <div class="flex-none w-1/5 relative h-24 overflow-hidden">
+      <div class="absolute bottom-0 right-0 w-auto ">
+        <%= render partial: "/layouts/avatar", locals: {css_class: "xs", user: other_user(conversation)} %>
+      </div>
+      <% if conversation.product.images.present? %>
+          <%= image_tag(conversation.product.images.first.variant(:thumb), class: "w-full h-24 w-auto rounded") %>
+      <% end %>
+    </div>
 
-  <% if conversation.product.images.present? %>
-      <%= image_tag(conversation.product.images.first.variant(:thumb)) %>
-  <% end %>
-
-  <%= conversation.messages&.last&.content %></p>
-
-<%= render partial: "/layouts/avatar", locals: {css_class: "xs", user: other_user(conversation)} %>
-<%= render partial: "/layouts/avatar", locals: {css_class: "xs", user: current_user} %>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this conversation", conversation, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
+    <div class="flex-non w-4/5  px-2 py-1">
+        <div class ="flex">
+            <div class="flex-none w-1/2"><%= other_user(conversation)&.user_name.capitalize%></div>
+            <div class="flex-none w-1/2 text-right text-green-600"><%= conversation.messages.last.created_at.strftime("%b %d") %></div>
+        </div>
+        <div>
+          <% if not conversation.product.active %>
+            <p class="line-through text-gray-400 text-lg">
+              Closed Ad:&nbsp;
+              <%= conversation.product.title %>
+            </p>
+          <% else %>
+            <p class="font-bold text-lg"><%= conversation.product.title %></p>
+          <%  end%>
+        </div>
+        <div class="text-base w-10/12 truncate whitespace-nowrap overflow-hidden"><p><%= truncate(conversation.messages&.last&.content , length: 50)%></p></div>
+    </div>
 </div>
+
+<% end %>
