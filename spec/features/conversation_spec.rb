@@ -40,6 +40,23 @@ RSpec.feature 'Conversations lists', type: :feature do
         visit conversations_path
         expect(page).to have_text("I would buy it for 350")
     end
+
+    scenario 'It lists all the messages in the conversation/chats' do 
+        valid_product = create(:product, title: "First Product")
+        conversation = create(:conversation, product: valid_product)
+        message = create(:message, content: "I would buy it for 350", user: user_two, conversation: conversation)
+        message = create(:message, content: "That will be too low", user: user, conversation: conversation)
+        visit conversations_path
+        click_link("#conversation_#{conversation.id}")
+        expect(page).to have_text("I would buy it for 350")
+        expect(page).to have_text("That will be too low")
+        
+    end
+
+    # scenario 'It has a search function' do 
+    #     visit conversations_path
+    #     expect(page).to have_text("")
+    # end
     
 
 
