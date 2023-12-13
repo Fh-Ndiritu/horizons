@@ -1,0 +1,14 @@
+<% is_other_user = message.user != current_user  %>
+<% styles = is_other_user ? "bg-green-100 float-left" : "bg-white float-right" %>
+
+<div class="rounded p-1 block my-4 w-3/5
+        <%= styles%>   
+    ">
+    <div class="">
+        <%= message.content %>
+    </div>
+    <div class="text-right">
+        <%= message.created_at.strftime("%H:%M %p") %>  
+    </div>
+    
+</div>
