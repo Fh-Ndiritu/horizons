@@ -21,7 +21,7 @@ end
 Message.destroy_all
 Conversation.all.each do |conversation|
     User.all.each do |user|
-        FactoryBot.create(:message, conversation: conversation, user: user)
+        3.times{FactoryBot.create(:message, conversation: conversation, user: user)}
     end
     
 end
