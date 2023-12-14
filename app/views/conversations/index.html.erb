@@ -1,23 +1,16 @@
-<div class="w-full" >
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-  <% end %>
-
-  <div class="flex justify-between items-center text-center">
-    <h1 class="font-bold text-4xl">Conversations</h1>
+  <div class="flex  items-center text-center my-10">
+    <h1 class="font-bold text-4xl w-full flex-none">Messages</h1>
   </div>
-</div>
 
-  <div class="flex" data-controller="conversations">
-      <div id="conversations" class="w-2/6 flex-none h-screen border-r border-t px-2 py-2 border-gray-400">
-        <%= render @conversations %>
-      </div>
-      <%= turbo_frame_tag "messages" do %>
-        <div class="flex-none flex items-center justify-center  h-screen w-4/6">
-          <div class="h-full flex-none">
-            <%= image_tag("icons/loading.gif", class: "text-center") %>
-          </div>
+  <div class="flex h-screen pb-24 w-full" data-controller="conversations">
+      <div id="conversations" class="  w-2/6 flex-none border-r border-t pl-2 py-2 border-gray-200 rounded">
+        <div >Search Bar</div>
+        <div class="custom_scroll_bar h-screen sm:h-5/6 overflow-x-hidden overflow-y-scroll ">
+            <%= render @conversations %>
         </div>
+      </div>
+      <%= turbo_frame_tag "messages", class: "flex-none flex items-center justify-center  h-screen sm:h-full  w-4/6 " do %>
+            <%= image_tag("icons/loading.gif") %>
       <% end %>
   </div>
 </div>
