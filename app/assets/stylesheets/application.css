@@ -73,5 +73,36 @@
    font-size: 20px;
 }
 
+.custom_scroll_bar::-webkit-scrollbar-thumb {
+   display: none;
+}
+.custom_scroll_bar:hover::-webkit-scrollbar-thumb {
+   display: initial;
+}
+.custom_scroll_bar::-webkit-scrollbar {
+   width: 6px;
+   cursor: pointer;
+   background-color: rgba(229, 231, 235, var(--bg-opacity));
+
+}
+body.custom_scroll_bar::-webkit-scrollbar {
+   width: 8px;
+   display: initial !important;
+   background-color: rgba(229, 231, 235, var(--bg-opacity));
+
+}
+
+.custom_scroll_bar::-webkit-scrollbar-track {
+   background-color: rgba(229, 231, 235, var(--bg-opacity));
+   cursor: pointer;
+   /*background: red;*/
+}
+
+.custom_scroll_bar::-webkit-scrollbar-thumb {
+   cursor: pointer;
+   background-color: #a0aec0;
+   border-radius: 4px;
+   /*outline: 1px solid slategrey;*/
+}
 
 
