@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, 
          :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
   validates :user_name, presence: true
+  after_create_commit :update_username
 
 
 
@@ -22,6 +23,13 @@ class User < ApplicationRecord
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
     end
+  end
+
+
+  private 
+
+  def update_username
+    self.update user_name: user_name.split.map(&:capitalize).join(" ")
   end
 
 end

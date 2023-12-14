@@ -47,7 +47,8 @@ RSpec.feature 'Conversations lists', type: :feature do
         message = create(:message, content: "I would buy it for 350", user: user_two, conversation: conversation)
         message = create(:message, content: "That will be too low", user: user, conversation: conversation)
         visit conversations_path
-        click_link("#conversation_#{conversation.id}")
+
+        page.find_link("conversation_#{conversation.id}").click
         expect(page).to have_text("I would buy it for 350")
         expect(page).to have_text("That will be too low")
         

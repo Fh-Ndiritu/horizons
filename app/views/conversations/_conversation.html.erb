@@ -11,7 +11,7 @@
 
     <div class="flex-non w-4/5  px-2 py-1">
         <div class ="flex">
-            <div class="flex-none w-1/2"><%= other_user(conversation)&.user_name.capitalize%></div>
+            <div class="flex-none w-1/2"><%= other_user(conversation)&.user_name %></div>
             <div class="flex-none w-1/2 text-right text-green-600"><%= conversation.messages.last.created_at.strftime("%b %d") %></div>
         </div>
         <div>
