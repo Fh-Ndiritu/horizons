@@ -1,4 +1,4 @@
-<div class="w-full">
+<div class="w-full" >
   <% if notice.present? %>
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
   <% end %>
@@ -8,12 +8,16 @@
   </div>
 </div>
 
-  <div class="flex">
+  <div class="flex" data-controller="conversations">
       <div id="conversations" class="w-2/6 flex-none h-screen border-r border-t px-2 py-2 border-gray-400">
         <%= render @conversations %>
       </div>
-      <div class="flex-none w-4/6">
-            messages
-      </div>
+      <%= turbo_frame_tag "messages" do %>
+        <div class="flex-none flex items-center justify-center  h-screen w-4/6">
+          <div class="h-full flex-none">
+            <%= image_tag("icons/loading.gif", class: "text-center") %>
+          </div>
+        </div>
+      <% end %>
   </div>
 </div>

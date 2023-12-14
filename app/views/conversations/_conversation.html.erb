@@ -1,4 +1,7 @@
-<%= link_to conversation, id: dom_id(conversation), class: "w-full hover:bg-gray-400 "  do  %>
+<%= link_to conversation,
+ id: dom_id(conversation), 
+ class: "w-full hover:bg-gray-400 conversation",
+ data: { turbo_frame: "messages",  conversations_target:  "chat"}  do  %>
 <div class="w-full flex-none flex my-4 pb-4  border-b border-gray-200 ">
     <div class="flex-none w-1/5 relative h-24 overflow-hidden">
       <div class="absolute bottom-0 right-0 w-auto ">

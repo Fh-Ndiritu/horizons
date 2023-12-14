@@ -1,18 +1,19 @@
-<div class="px-2 w-full">
-  <%= link_to product_path(@conversation.product), class: "flex shadow mb-2 p-2" do %>
-      <div class="">
-        <% if @conversation.product.images.present? %>
-            <%= image_tag(@conversation.product.images.first.variant(:thumb), class: "w-full h-auto  w-24 rounded") %>
-        <% end %>
-      </div>
-      <div class="block px-2">
-          <p class="text-lg text-bold"><%= @conversation.product.title %></p>
-          <sm class="text-green-500"><%= @conversation.product.price %> Ksh</sm>
-      </div>
-  <% end %>
+<%= turbo_frame_tag "messages" do %>
+  <div class="px-2 w-full">
+    <%= link_to product_path(@conversation.product), class: "flex shadow mb-2 p-2" do %>
+        <div class="">
+          <% if @conversation.product.images.present? %>
+              <%= image_tag(@conversation.product.images.first.variant(:thumb), class: "w-full h-auto  w-24 rounded") %>
+          <% end %>
+        </div>
+        <div class="block px-2">
+            <p class="text-lg text-bold"><%= @conversation.product.title %></p>
+            <sm class="text-green-500"><%= @conversation.product.price %> Ksh</sm>
+        </div>
+    <% end %>
 
-  <div class="bg-gray-100 p-4 h-screen">
-    <%= render @conversation.messages %>
+    <div class="bg-gray-100 p-4 h-screen">
+      <%= render @conversation.messages %>
+    </div>
   </div>
-</div>
-
+<% end %>
