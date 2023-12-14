@@ -3,7 +3,7 @@
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 
 User.destroy_all
-2.times do 
+3.times do 
     user = FactoryBot.create(:user)
 end
 
@@ -16,14 +16,17 @@ end
 
 #conversations
  Conversation.destroy_all
-4.times{ FactoryBot.create(:conversation, product: Product.all.sample)}
+8.times{ FactoryBot.create(:conversation, product: Product.all.sample)}
 # conversation thread
 Message.destroy_all
 Conversation.all.each do |conversation|
-    User.all.each do |user|
-        3.times{FactoryBot.create(:message, conversation: conversation, user: user)}
+    user = conversation.product.user
+    other_user = User.where.not(id: user).sample
+    users = [user, other_user]
+    8.times do 
+        current_user = users.sample
+        FactoryBot.create(:message, conversation: conversation, user: current_user )
     end
-    
 end
 
 
