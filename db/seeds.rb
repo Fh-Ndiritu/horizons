@@ -9,7 +9,7 @@ end
 
 Product.destroy_all
 #products 
-2.times do 
+8.times do 
     product = FactoryBot.create(:product, user: User.first, active: true)
 end
 

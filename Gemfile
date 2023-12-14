@@ -55,6 +55,8 @@ gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-facebook', '~> 9.0'
 gem 'omniauth-google-oauth2', '~> 1.1', '>= 1.1.1'
 gem 'foreman', '~> 0.87.2'
+gem 'thinking-sphinx', '~> 5.5', '>= 5.5.1'
+gem 'mysql2', '~> 0.5.0'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
