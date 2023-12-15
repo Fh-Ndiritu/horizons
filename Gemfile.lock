@@ -157,6 +157,8 @@ GEM
     joiner (0.6.0)
       activerecord (>= 6.1.0)
     jwt (2.7.1)
+    launchy (2.5.2)
+      addressable (~> 2.8)
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -361,6 +363,7 @@ DEPENDENCIES
   image_processing (~> 1.2)
   importmap-rails
   jbuilder
+  launchy (~> 2.5, >= 2.5.2)
   mysql2 (~> 0.5.3)
   omniauth (~> 2.1, >= 2.1.1)
   omniauth-facebook (~> 9.0)
