@@ -55,15 +55,18 @@ RSpec.feature 'Conversations lists', type: :feature do
     end
 
     describe 'it has a search function: ' do 
-        scenario 'It has a search form' do 
+        before do 
             visit conversations_path
+        end
+
+        scenario 'It has a search form' do 
             expect(page).to have_text("Search Messages")
         end
 
         scenario 'It returns conversations with message content' do 
             conversation = create(:conversation)
             create(:message, content: "Very unique product you have", user: user_two, conversation: conversation)
-            fill_in('Search Content', with: "unique product you")
+            fill_in("query", with: "unique product you")
             click_on("Search Now")
             expect(find("#conversation_#{conversation.id}")).to have_content("Very unique product you have")
         end
@@ -72,7 +75,7 @@ RSpec.feature 'Conversations lists', type: :feature do
             conversation = create(:conversation)
             new_user = create(:user, user_name: "Monica Hall")
             create(:message, content: "Very unique name ...", user: user_two, conversation: conversation)
-            fill_in('Search Content', with: "Monica Hall")
+            fill_in("query", with: "Monica Hall")
             click_on("Search Now")
             expect(find("#conversation_#{conversation.id}")).to have_content("Monica Hall")
             expect(find("#conversation_#{conversation.id}")).to have_content("Very unique name")
@@ -82,7 +85,7 @@ RSpec.feature 'Conversations lists', type: :feature do
             valid_product = create(:product, title: "Caraxes")
             conversation = create(:conversation, product: valid_product)
             create(:message,  user: user, conversation: conversation)
-            fill_in('Search Content', with: "Caraxes")
+            fill_in("query", with: "Caraxes")
             click_on("Search Now")
             expect(find("#conversation_#{conversation.id}")).to have_content("Caraxes")
         end

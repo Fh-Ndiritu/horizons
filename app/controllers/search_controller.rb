@@ -1,10 +1,10 @@
 class SearchController < ApplicationController
     def conversations
-        messages = Message.search(conversation_params[:content])
-        @conversations = Conversations.search(conversation_params[:content]).or(
+        messages = Message.search(conversation_params[:query])
+        @conversations = Conversation.search(conversation_params[:query]).concat(
             Conversation.where(id: messages.pluck(:conversation_id))
         )
-        abort @conversations.inspect
+        @conversations
     end
 
 
@@ -13,7 +13,7 @@ class SearchController < ApplicationController
 
     def conversation_params 
         #content can be username, prod_title or message_content
-        params.require(:search).permit(:content)
+        params.permit(:query)
     end
 end
 
