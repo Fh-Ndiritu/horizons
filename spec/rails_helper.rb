@@ -31,7 +31,31 @@ begin
 rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
+
+  # before RSpec.configure
+  Rails.application.load_tasks
 RSpec.configure do |config|
+  # Starting Sphinx before all tests
+  config.before(:suite) do
+    ThinkingSphinx::Test.init
+    ThinkingSphinx::Test.start(index: false)
+  end
+
+  config.after(:suite) do
+    ThinkingSphinx::Test.stop
+  end
+
+    # inside RSpec.configure
+  # config.before(:suite) do
+  #   Rake::Task['ts:configure'].invoke
+  #   Rake::Task['ts:start'].invoke
+  # end
+
+  config.after(:suite) do
+    Rake::Task['ts:stop'].invoke
+    Rake::Task['ts:clear'].invoke
+  end
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [
     Rails.root.join('spec/fixtures')
