@@ -15,7 +15,9 @@
           <% end %>
         </div>
         <div class="custom_scroll_bar h-screen sm:h-5/6 overflow-x-hidden overflow-y-scroll ">
-            <%= render @conversations %>
+            <%= turbo_frame_tag "chats" do%>
+                <%= render @conversations %>
+            <% end %>
         </div>
       </div>
       <%= turbo_frame_tag "messages", class: "flex-none flex items-center justify-center  h-screen sm:h-full  w-4/6 " do %>

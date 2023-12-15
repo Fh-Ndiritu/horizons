@@ -4,7 +4,11 @@ class SearchController < ApplicationController
         @conversations = Conversation.search(conversation_params[:query]).concat(
             Conversation.where(id: messages.pluck(:conversation_id))
         )
-        @conversations
+
+        respond_to do |format|
+            format.html
+            format.turbo_stream
+        end
     end
 
 

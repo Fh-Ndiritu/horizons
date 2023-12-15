@@ -1,0 +1,5 @@
+<%= turbo_stream.replace "chats" do %>
+    <%= turbo_frame_tag "chats" do%>
+        <%= render @conversations %>
+    <% end %>
+<% end %>
