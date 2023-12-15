@@ -9,7 +9,7 @@ class SearchController < ApplicationController
         end
 
         respond_to do |format|
-            format.html
+            format.html{ render '/conversations/index'}
             format.turbo_stream
         end
     end
