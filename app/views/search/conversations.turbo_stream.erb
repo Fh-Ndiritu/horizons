@@ -1,5 +1,8 @@
 <%= turbo_stream.replace "chats" do %>
     <%= turbo_frame_tag "chats" do%>
+        <%if @conversations.empty? %>
+            <h5 class="text-red-300 text-center">No matches found</h5>
+        <% end %>
         <%= render @conversations %>
     <% end %>
 <% end %>

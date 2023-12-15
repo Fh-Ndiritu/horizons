@@ -1,9 +1,12 @@
 class SearchController < ApplicationController
     def conversations
-        messages = Message.search(conversation_params[:query])
-        @conversations = Conversation.search(conversation_params[:query]).concat(
-            Conversation.where(id: messages.pluck(:conversation_id))
-        )
+        if not conversation_params[:query].empty?
+            from_messages = Message.search(conversation_params[:query]).pluck(:conversation_id)
+            from_product    = Conversation.search(conversation_params[:query]).pluck(:id)
+            @conversations = Conversation.where(id: from_messages.concat(from_product)).includes(:product)
+        else
+            @conversations = Conversation.all.includes(:product)
+        end
 
         respond_to do |format|
             format.html
