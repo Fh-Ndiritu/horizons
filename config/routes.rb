@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   post 'profile/update'
   
 
-  
+  post "search_conversations", to: "search#conversations"
   get "messages", to: "conversations#index", as: :messages
   resources :conversations, only: [:index, :show, :new]
   

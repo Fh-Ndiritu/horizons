@@ -2,6 +2,9 @@
 # development, test). The code here should be idempotent so that it can be executed at any point in every environment.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 
+Rake::Task['ts:configure'].invoke
+Rake::Task['ts:start'].invoke
+
 User.destroy_all
 3.times do 
     user = FactoryBot.create(:user)

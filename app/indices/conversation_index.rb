@@ -3,6 +3,7 @@ ThinkingSphinx::Index.define :conversation, :with => :real_time do
   indexes subject, :sortable => true
   indexes title
   indexes product.title, :as => :title, :sortable => true
+  indexes product.user.username, :as => :user_name, :sortable => true
   indexes product.price, :as => :price, :sortable => true
 
   # attributes
