@@ -5,7 +5,10 @@ export default class extends Controller {
   static targets = ["chat", "query", "submit"]
 
   connect() {
-    this.chatTarget.click()
+    this.isMobile = this.data.get("ismobile")
+    if (this.isMobile !== "true") {
+      this.chatTarget.click()
+    }
   }
 
   search() {
