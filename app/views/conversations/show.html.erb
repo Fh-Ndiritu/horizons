@@ -13,7 +13,13 @@
     <% end %>
 
     <div class="bg-gray-200 p-4 h-screen sm:h-5/6 overflow-x-hidden overflow-y-scroll custom_scroll_bar rounded-lg">
-      <%= render @conversation.messages %>
+      <% @conversation.messages.group_by{|msg| msg.created_at.to_date }.each do |date, messages|%>
+        <div class=" block my-4 w-auto  text-center  float-right w-full">
+          <span class="rounded-xl p-2 bg-white text-sm text-bold-xl"><%= nice_date(date) %></span>
+        </div>
+        <%= render messages %>
+      <% end %>
+
     </div>
   </div>
 <% end %>

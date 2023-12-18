@@ -87,7 +87,17 @@ RSpec.feature 'Conversations lists', type: :feature do
             create(:message,  user: user, conversation: conversation)
             fill_in("query", with: "Caraxes")
             click_on("Search")
-             expect(page).to have_content("Caraxes")
+            expect(page).to have_content("Caraxes")
+        end
+
+        scenario 'it groups chats by date of conversation' do 
+            valid_product = create(:product, user: user)
+            conversation = create(:conversation, product: valid_product)
+            create(:message, user: user_two, conversation: conversation)
+
+            visit conversations_path
+            page.find_link("conversation_#{conversation.id}").click
+            expect(page).to have_text("Today")
         end
 
 
