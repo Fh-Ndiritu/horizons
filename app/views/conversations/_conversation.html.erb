@@ -31,7 +31,7 @@
             <p class="font-bold text-sm"><%= conversation.product.title %></p>
           <%  end%>
         </div>
-        <div class="text-sm w-10/12 truncate whitespace-nowrap overflow-hidden"><p><%= truncate(conversation.messages&.last&.content , length: 50)%></p></div>
+        <div class="text-sm w-10/12 truncate whitespace-nowrap overflow-hidden"><p><%= conversation.messages&.last&.content %></p></div>
     </div>
 </div>
 

@@ -80,7 +80,7 @@
    height: 20px;
 }
 .avatar.xs svg text {
-   font-size: 10px;
+   font-size: 18px;
 }
 
 .custom_scroll_bar::-webkit-scrollbar-thumb {
@@ -115,4 +115,32 @@ body.custom_scroll_bar::-webkit-scrollbar {
    /*outline: 1px solid slategrey;*/
 }
 
+trix-toolbar .trix-button-group{
+   display: none;
+}
 
+#message-form{
+   position: relative;
+}
+ trix-toolbar .trix-button-group--file-tools{
+   display: initial;
+   position: absolute;
+   right: 0px;
+   margin: 0 !important;
+   top: 50%;
+   transform: translate(0, -50%);
+   border: none;
+   button{
+      border: none;
+      padding:0;
+      width: 2rem;
+      height: 2rem;
+      background-color: white;
+      transform: rotate(145deg);
+      height: 70%;
+   }
+ }
+ trix-editor#content{
+   border: none;
+   padding-right: 2rem;
+ }

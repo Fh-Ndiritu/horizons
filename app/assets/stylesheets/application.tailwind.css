@@ -20,3 +20,4 @@
     @apply text-sm text-red-400 text-center; 
    }
  }
+ @import 'actiontext.css';
