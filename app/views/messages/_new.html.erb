@@ -1,0 +1,11 @@
+  <div class="bg-gray-200 p-2">
+            <div class="bg-white rounded p-2">
+                <%= form_with(model: [@conversation, Message.new] , url: conversation_messages_path(@conversation))do |form| %>
+                  <div class="field" id="message-form">
+                    <%= form.label :content %>
+                    <%= form.rich_text_area :content %>
+                  </div>
+                  <%= form.submit "Send" %>
+                <% end %>
+            </div>
+      </div>
