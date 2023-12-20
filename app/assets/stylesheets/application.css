@@ -16,11 +16,12 @@
 
  body, html{
    width: 100vw;
+   overflow-x: hidden;
  }
 
  @media(min-width: 1200px){
    main, .nav_wrap {
-      width: 1200px;
+      width: 1200px !important;
       margin: 0 auto;
    }
  }
@@ -50,10 +51,10 @@
     align-items: center;
  }
  .logout-mobile{
-        position: relative;
-        width: 100%;
-        padding: 5px 10px;
-        margin: auto 5px;
+   position: relative;
+   width: 100%;
+   padding: 5px 10px;
+   margin: auto 5px;
 }
 .avatar, .avatar.base{
    margin: 0;
@@ -94,6 +95,9 @@
    cursor: pointer;
    background-color: rgba(229, 231, 235, var(--bg-opacity));
 
+}
+body.custom_scroll_bar::-webkit-scrollbar-thumb {
+   display: initial !important;
 }
 body.custom_scroll_bar::-webkit-scrollbar {
    width: 8px;
