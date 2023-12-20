@@ -90,7 +90,11 @@ RSpec.feature 'Conversations lists', type: :feature do
             expect(page).to have_content("Caraxes")
         end
 
-        scenario 'it groups chats by date of conversation' do 
+        
+    end
+
+    describe 'it shows messages in conversations' do 
+         scenario 'it groups chats by date of conversation' do 
             valid_product = create(:product, user: user)
             conversation = create(:conversation, product: valid_product)
             create(:message, user: user_two, conversation: conversation)
@@ -100,11 +104,22 @@ RSpec.feature 'Conversations lists', type: :feature do
             expect(page).to have_text("Today")
         end
 
+        scenario 'user can add a new message', focus: do 
+            conversation = create(:conversation)
+            message = create(:message, conversation: conversation)
 
-        
+            visit conversations_path
+            click_on("conversation_#{conversation.id}")
+
+            msg = "Thanks for reaching out about ... "
+            fill_in("content", with: msg)
+            click_on("Send")
+
+            expect(page).to have_text(msg)
+        end
+
+
     end
-    
-
 
 
 end
