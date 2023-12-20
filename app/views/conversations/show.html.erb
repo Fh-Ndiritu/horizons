@@ -20,17 +20,13 @@
         <div class=" block my-4  text-center  float-right w-full">
           <span class="rounded-xl p-2 bg-white text-sm text-bold-xl"><%= nice_date(date) %></span>
         </div>
-        <%= render messages %>
+        <%= turbo_frame_tag "chat_messages" do %>
+          <%= render messages %>
+        <% end %>
       <% end %>
     </div>
-      <div class="bg-gray-200 p-2">
-            <div class="bg-white rounded p-2">
-                <%= form_with model: @message do |form| %>
-                  <div class="field" id="message-form">
-                    <%= form.rich_text_area :content %>
-                  </div>
-                <% end %>
-            </div>
-      </div>
+    <%= turbo_frame_tag "new_message" do  %>
+      <%= render "/messages/new" %>
+    <% end %>
   </div>
 <% end %>
