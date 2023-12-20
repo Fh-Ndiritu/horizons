@@ -7,7 +7,9 @@ Rails.application.routes.draw do
 
   post "search_conversations", to: "search#conversations"
   get "messages", to: "conversations#index", as: :messages
-  resources :conversations, only: [:index, :show, :new]
+  resources :conversations, only: [:index, :show, :new] do 
+      resources :messages, only: [:create]
+  end
   
   root to:  'home#index'
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks"}
