@@ -113,7 +113,8 @@ RSpec.feature 'Conversations lists', type: :feature do
 
             msg = "Thanks for reaching out about ... "
             find("trix-editor").click.set(msg)
-            click_on("Send")
+            find("#send").click
+            click_on("conversation_#{conversation.id}")
 
             expect(page).to have_content(msg)
         end
