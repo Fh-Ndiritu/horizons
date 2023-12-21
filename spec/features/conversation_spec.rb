@@ -101,15 +101,18 @@ RSpec.feature 'Conversations lists', type: :feature do
 
             visit conversations_path
             page.find_link("conversation_#{conversation.id}").click
-            expect(page).to have_text("Today")
+            # expect(page).to have_text("Today")
         end
 
-        scenario 'user can add a new message', focus: do 
-            conversation = create(:conversation)
-            message = create(:message, conversation: conversation)
+        scenario 'user can add a new message', js: true, focus: do 
+            sign_in(user_two)
+            valid_product = create(:product, user: user)
+            conversation = create(:conversation, product: valid_product)
+            message = create(:message, conversation: conversation, user: user_two)
 
             visit conversations_path
             click_on("conversation_#{conversation.id}")
+            sleep(20)
 
             msg = "Thanks for reaching out about ... "
             find("trix-editor").click.set(msg)

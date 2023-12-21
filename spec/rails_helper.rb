@@ -1,11 +1,14 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
+require 'capybara/rspec'
+require 'selenium/webdriver'
+require 'support/database_cleaner'
+
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
-require 'support/database_cleaner'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -57,9 +60,9 @@ RSpec.configure do |config|
   end
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_paths = [
-    Rails.root.join('spec/fixtures')
-  ]
+  # config.fixture_paths = [
+  #   Rails.root.join('spec/fixtures')
+  # ]
 
   config.include FactoryBot::Syntax::Methods
   
@@ -96,4 +99,19 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+    # Webdrivers::Chromedriver.required_version='114.0.5735.90'
+
+    Capybara.register_driver :chrome do |app|
+      options = Selenium::WebDriver::Chrome::Options.new
+      options.add_argument('--no-sandbox')
+      # options.add_argument('--headless')
+    
+      Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+    end
+
+    Capybara.javascript_driver = :chrome
+    # Capybara.default_driver = :chrome
+
 end
+
