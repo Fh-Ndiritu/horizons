@@ -115,7 +115,7 @@ RSpec.feature 'Conversations lists', type: :feature do
             find("trix-editor").click.set(msg)
             click_on("Send")
 
-            expect(page).to have_text(msg)
+            expect(page).to have_content(msg)
         end
 
 

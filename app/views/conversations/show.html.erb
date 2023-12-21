@@ -15,7 +15,7 @@
         </div>
     <% end %>
 
-    <div class="bg-gray-200 p-4 sm:pb-2 h-auto w-full overflow-x-hidden h-min-screen sm:h-5/6 sm:overflow-y-scroll custom_scroll_bar ">
+    <div class="bg-gray-200  p-4 pb-20 md:pb-2 h-auto w-full overflow-x-hidden h-min-screen sm:h-5/6 sm:overflow-y-scroll custom_scroll_bar ">
       <% @conversation.messages.group_by{|msg| msg.created_at.to_date }.each do |date, messages|%>
         <div class=" block my-4  text-center  float-right w-full">
           <span class="rounded-xl p-2 bg-white text-sm text-bold-xl"><%= nice_date(date) %></span>
@@ -25,8 +25,10 @@
         <% end %>
       <% end %>
     </div>
-    <%= turbo_frame_tag "new_message" do  %>
+
+    <%= turbo_frame_tag "new_message", class: "w-full items-center  fixed bottom-0 md:relative mb-0" do  %>
       <%= render "/messages/new" %>
     <% end %>
+
   </div>
 <% end %>
