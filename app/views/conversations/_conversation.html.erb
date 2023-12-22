@@ -31,7 +31,14 @@
             <p class="font-bold text-sm"><%= conversation.product.title %></p>
           <%  end%>
         </div>
-        <div class="text-sm w-10/12 truncate whitespace-nowrap overflow-hidden"><p><%= conversation.messages&.last&.content %></p></div>
+        <div class="text-sm w-10/12 truncate whitespace-nowrap overflow-hidden"><p>
+          <% if has_images(conversation.messages&.last) %>
+              Shared an image
+          <% else %>
+              <%=conversation.messages&.last.content %>
+          <% end %>
+
+        </p></div>
     </div>
 </div>
 
