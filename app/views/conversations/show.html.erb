@@ -22,6 +22,7 @@
         </div>
         <%= turbo_frame_tag "chat_messages" do %>
           <%= render messages %>
+          <%= turbo_stream_from  "chat_messages" %>
         <% end %>
       <% end %>
     </div>
