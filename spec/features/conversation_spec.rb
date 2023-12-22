@@ -12,7 +12,7 @@ RSpec.feature 'Conversations lists', type: :feature do
         valid_product = create(:product, title: "First Product")
         conversation = create(:conversation, product: valid_product)
         create(:message, user: user, conversation: conversation)
-        visit conversations_path
+        visit messages_path
         expect(page).to have_text("First Product")
     end
 
@@ -20,7 +20,7 @@ RSpec.feature 'Conversations lists', type: :feature do
         expired_product = create(:product, title: "First Product", active: false)
         conversation   = create(:conversation, product: expired_product)
         create(:message, user: user, conversation: conversation)
-        visit conversations_path
+        visit messages_path
         expect(page).to have_text("Closed Ad")
     end
 
@@ -29,7 +29,7 @@ RSpec.feature 'Conversations lists', type: :feature do
         conversation = create(:conversation, product: valid_product)
         create(:message, user: user, conversation: conversation)
         create(:message, user: user_two, conversation: conversation)
-        visit conversations_path
+        visit messages_path
         expect(page).to have_text("John Doe")
     end
     
@@ -37,7 +37,7 @@ RSpec.feature 'Conversations lists', type: :feature do
         valid_product = create(:product, title: "First Product")
         conversation = create(:conversation, product: valid_product)
         message = create(:message, content: "I would buy it for 350", user: user, conversation: conversation)
-        visit conversations_path
+        visit messages_path
         expect(page).to have_text("I would buy it for 350")
     end
 
@@ -46,7 +46,7 @@ RSpec.feature 'Conversations lists', type: :feature do
         conversation = create(:conversation, product: valid_product)
         message = create(:message, content: "I would buy it for 350", user: user_two, conversation: conversation)
         message = create(:message, content: "That will be too low", user: user, conversation: conversation)
-        visit conversations_path
+        visit messages_path
 
         page.find_link("conversation_#{conversation.id}").click
         expect(page).to have_text("I would buy it for 350")
@@ -56,7 +56,7 @@ RSpec.feature 'Conversations lists', type: :feature do
 
     describe 'it has a search function: ' do 
         before do 
-            visit conversations_path
+            visit messages_path
         end
 
         scenario 'It has a search form' do 
@@ -94,30 +94,26 @@ RSpec.feature 'Conversations lists', type: :feature do
     end
 
     describe 'it shows messages in conversations' do 
-         scenario 'it groups chats by date of conversation' do 
-            valid_product = create(:product, user: user)
-            conversation = create(:conversation, product: valid_product)
+         scenario 'it groups chats by date of conversation' do
+            product = create(:product, user: user)
+            conversation = create(:conversation, product: product)
             create(:message, user: user_two, conversation: conversation)
-
-            visit conversations_path
+            visit messages_path
             page.find_link("conversation_#{conversation.id}").click
-            # expect(page).to have_text("Today")
+            expect(page).to have_text("Today")
         end
 
-        scenario 'user can add a new message', js: true, focus: do 
-            sign_in(user_two)
+        scenario 'user can add a new message', js: true do 
             valid_product = create(:product, user: user)
             conversation = create(:conversation, product: valid_product)
             message = create(:message, conversation: conversation, user: user_two)
 
-            visit conversations_path
+            visit messages_path
             click_on("conversation_#{conversation.id}")
-            sleep(20)
 
             msg = "Thanks for reaching out about ... "
             find("trix-editor").click.set(msg)
             find("#send").click
-            click_on("conversation_#{conversation.id}")
 
             expect(page).to have_content(msg)
         end
