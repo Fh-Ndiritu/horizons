@@ -1,5 +1,8 @@
 module ConversationsHelper
 
+    def has_images(msg)
+        msg.content.body.attachments.count > 0
+    end
     def nice_date(date_time)
         time_now = DateTime.now.utc
         time = case time_now
