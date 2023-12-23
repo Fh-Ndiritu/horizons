@@ -1,5 +1,6 @@
 class ConversationsController < ApplicationController
   before_action :set_conversation, only: %i[ show edit update destroy ]
+  before_action :set_product, only: %i[new]
 
   # GET /conversations or /conversations.json
   def index
@@ -12,7 +13,8 @@ class ConversationsController < ApplicationController
 
   # GET /conversations/new
   def new
-    @conversation = Conversation.new
+    @conversation = @product.conversations.create 
+    redirect_to new_conversation_message_path(@conversation)
   end
 
   # GET /conversations/1/edit
@@ -59,6 +61,10 @@ class ConversationsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_product
+      @product =Product.find(params[:product_id])
+    end
+
     def set_conversation
       @conversation = Conversation.find(params[:id])
     end

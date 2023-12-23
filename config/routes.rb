@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :messages
   get 'avatars/show'
 
   get  'profile', to: 'profile#edit', as: :profile
@@ -6,10 +7,17 @@ Rails.application.routes.draw do
   
 
   post "search_conversations", to: "search#conversations"
-  get "messages", to: "conversations#index", as: :messages
+  get "conversations", to: "conversations#index", as: :conversations
+  
   resources :conversations, only: [:index, :show, :new] do 
-      resources :messages, only: [:create]
+      resources :messages, only: [:create, :new]
   end
+
+  resources :products do 
+      resources :conversations, only: [:create, :new, :index]
+  end
+
+
   
   root to:  'home#index'
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks"}

@@ -1,45 +1,46 @@
-<%= link_to conversation,
- id: dom_id(conversation), 
- class: "w-full hover:bg-gray-400 conversation",
- data: {
-    turbo_frame: "messages",
-    conversations_target:  "chat",
-    turbo: (not @is_mobile), 
-}  do  %>
-<div class="w-full flex-none flex my-4 pb-4  border-b border-gray-200 ">
-    <div class="flex-none w-3/12 sm:w-1/5 relative h-16  md:h-20 overflow-hidden">
-      <div class="absolute bottom-0 xs:left-0 sm:right-0 w-auto ">
-        <%= render partial: "/layouts/avatar", locals: {css_class: "xs", user: other_user(conversation)} %>
-      </div>
-      <% if conversation.product.images.present? %>
-          <%= image_tag(conversation.product.images.first.variant(:thumb), class: "w-auto md:w-full h-16 md:h-20 rounded") %>
-      <% end %>
-    </div>
-
-    <div class="flex-non w-9/12 sm:w-4/5  px-2 py-1">
-        <div class ="flex text-xs">
-            <div class="flex-none w-1/2"><%= other_user(conversation)&.user_name %></div>
-            <div class="flex-none w-1/2 text-right text-green-600"><%= conversation.messages.last.created_at.strftime("%b %d") %></div>
-        </div>
-        <div>
-          <% if not conversation.product.active %>
-            <p class="line-through text-gray-400 text-base">
-              Closed Ad:&nbsp;
-              <%= conversation.product.title %>
-            </p>
-          <% else %>
-            <p class="font-bold text-sm"><%= conversation.product.title %></p>
-          <%  end%>
-        </div>
-        <div class="text-sm w-10/12 truncate whitespace-nowrap overflow-hidden"><p>
-          <% if has_images(conversation.messages&.last) %>
-              Shared an image
-          <% else %>
-              <%=conversation.messages&.last.content %>
+<% if conversation.messages.present? %>
+  <%= link_to conversation,
+  id: dom_id(conversation), 
+  class: "w-full hover:bg-gray-400 conversation",
+  data: {
+      turbo_frame: "messages",
+      conversations_target:  "chat",
+      turbo: (not @is_mobile), 
+    }  do  %>
+    <div class="w-full flex-none flex my-4 pb-4  border-b border-gray-200 ">
+        <div class="flex-none w-3/12 sm:w-1/5 relative h-16  md:h-20 overflow-hidden">
+          <div class="absolute bottom-0 xs:left-0 sm:right-0 w-auto ">
+            <%= render partial: "/layouts/avatar", locals: {css_class: "xs", user: other_user(conversation)} %>
+          </div>
+          <% if conversation.product.images.present? %>
+              <%= image_tag(conversation.product.images.first.variant(:thumb), class: "w-auto md:w-full h-16 md:h-20 rounded") %>
           <% end %>
+        </div>
 
-        </p></div>
+        <div class="flex-non w-9/12 sm:w-4/5  px-2 py-1">
+            <div class ="flex text-xs">
+                <div class="flex-none w-1/2"><%= other_user(conversation)&.user_name %></div>
+                <div class="flex-none w-1/2 text-right text-green-600"><%= conversation.messages.last.created_at.strftime("%b %d") %></div>
+            </div>
+            <div>
+              <% if not conversation.product.active %>
+                <p class="line-through text-gray-400 text-base">
+                  Closed Ad:&nbsp;
+                  <%= conversation.product.title %>
+                </p>
+              <% else %>
+                <p class="font-bold text-sm"><%= conversation.product.title %></p>
+              <%  end%>
+            </div>
+            <div class="text-sm w-10/12 truncate whitespace-nowrap overflow-hidden"><p>
+              <% if has_images(conversation.messages&.last) %>
+                  Shared an image
+              <% else %>
+                  <%=conversation.messages&.last.content %>
+              <% end %>
+
+            </p></div>
+        </div>
     </div>
-</div>
-
+  <% end %>
 <% end %>
