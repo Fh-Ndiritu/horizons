@@ -1,6 +1,0 @@
-<%= turbo_stream.append(:chat_messages, partial: "messages/message", locals: {message: @message}) %>
-<%= turbo_stream.update :new_message do %>
-    <%= turbo_frame_tag "new_message" do  %>
-      <%= render "/messages/new" %>
-    <% end %>
-<% end %>

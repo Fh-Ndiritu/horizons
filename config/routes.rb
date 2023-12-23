@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get "conversations", to: "conversations#index", as: :conversations
   
   resources :conversations, only: [:index, :show, :new] do 
-      resources :messages, only: [:create, :new]
+      resources :messages, only: [:create, :new, :index]
   end
 
   resources :products do 

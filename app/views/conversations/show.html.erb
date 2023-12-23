@@ -1,6 +1,5 @@
 <%= turbo_frame_tag "messages" do %>
 
-
   <div class="sm:px-2 w-full h-screen sm:h-full">
     <%= link_to product_path(@conversation.product), data: {turbo: false}, class: "flex shadow-lg mb-2 p-2" do %>
         <div class="">
@@ -16,15 +15,7 @@
     <% end %>
 
     <div class="bg-gray-200  p-4 pb-20 md:pb-2 h-auto w-full overflow-x-hidden h-min-screen sm:h-5/6 sm:overflow-y-scroll custom_scroll_bar ">
-      <% @conversation.messages.group_by{|msg| msg.created_at.to_date }.each do |date, messages|%>
-        <div class=" block my-4  text-center  float-right w-full">
-          <span class="rounded-xl p-2 bg-white text-sm text-bold-xl"><%= nice_date(date) %></span>
-        </div>
-        <%= turbo_frame_tag "chat_messages" do %>
-          <%= render messages %>
-          <%= turbo_stream_from  "chat_messages" %>
-        <% end %>
-      <% end %>
+      <%= link_to "view", conversation_messages_path(@conversation), data: {turbo: false} %>
     </div>
 
     <%= turbo_frame_tag "new_message", class: "w-full items-center  fixed bottom-0 md:relative mb-0" do  %>

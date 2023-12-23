@@ -1,0 +1,5 @@
+<%= turbo_stream.append("messages_#{@message.created_at.to_date}", partial: "messages/message", locals: {message: @message}) %>
+
+<%= turbo_stream.update @conversation.messages.new do %>
+      <%= render "form", message: @conversation.messages.new %>
+<% end %>

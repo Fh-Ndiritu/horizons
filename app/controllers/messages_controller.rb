@@ -1,10 +1,11 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: %i[ show edit update destroy ]
-  before_action :set_conversation, only: %i[new create]
+  before_action :set_conversation, only: %i[new create index]
 
   # GET /messages or /messages.json
   def index
-    @messages = Message.all
+     
+    @messages = @conversation.messages.includes(:user)
   end
 
   # GET /messages/1 or /messages/1.json
@@ -22,13 +23,13 @@ class MessagesController < ApplicationController
 
   # POST /messages or /messages.json
   def create
-    abort params.inspect
     @message = Message.new(message_params.merge(user: current_user, conversation: @conversation))
 
     respond_to do |format|
       if @message.save
         format.html { redirect_to message_url(@message), notice: "Message was successfully created." }
         format.json { render :show, status: :created, location: @message }
+        format.turbo_stream
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @message.errors, status: :unprocessable_entity }
