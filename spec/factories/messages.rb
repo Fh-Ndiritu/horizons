@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :message do
-    content { Faker::TvShows::GameOfThrones.quote }
     user
     conversation
+    content { Faker::TvShows::GameOfThrones.quote }
   end
 end

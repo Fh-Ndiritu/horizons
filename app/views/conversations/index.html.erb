@@ -1,3 +1,4 @@
+<%= turbo_stream_from "conversations" %>
 <div class="flex  items-center text-center mb-4 ">
     <h1 class="font-bold text-xl w-full flex-none">Messages</h1>
   </div>
@@ -21,7 +22,7 @@
           <% end %>
         </div>
         <div class="custom_scroll_bar h-auto pb-20 sm:pb-1 sm:h-5/6 overflow-x-hidden overflow-y-scroll ">
-            <%= turbo_frame_tag "chats" do%>
+            <%= turbo_frame_tag "conversations" do%>
                 <%= render @conversations %>
             <% end %>
         </div>

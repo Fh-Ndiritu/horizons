@@ -11,6 +11,6 @@ class Product < ApplicationRecord
   validates :title, presence: true
 
 
-  after_create_commit ->{broadcast_append_to("products", partial: "products/product", locals: {product: self} , target: "products")}
+  # after_create_commit ->{broadcast_append_to("products", partial: "products/product", locals: {product: self} , target: "products")}
 
 end
