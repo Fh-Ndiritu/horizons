@@ -11,6 +11,8 @@ export default class extends Controller {
     }
   }
 
+
+  
   search() {
     if (this.queryTarget.value.length > 3 || this.queryTarget.value.length == 0) {
       this.submitTarget.click()

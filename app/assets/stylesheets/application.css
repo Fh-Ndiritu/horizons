@@ -124,7 +124,7 @@
 
 
 
-#new_message{
+.new_message{
    trix-editor {
          min-height: 2rem;
          border-width: 0px;
@@ -189,3 +189,18 @@
       flex: none !important;
    }
 }
+   .new_form {
+      display: initial;
+   }
+   .edit_form {
+      display: none;
+   }
+   .editing{
+      .new_form{
+      display: none;
+   }
+      .edit_form {
+         display: block;
+      }
+}
+

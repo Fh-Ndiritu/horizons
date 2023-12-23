@@ -12,7 +12,7 @@
             <% if user_signed_in?  %>
                 <ul class="hidden md:flex px-4 mx-auto font-semibold font-heading space-x-12">
                     <%= link_to "Home", root_path, class: "hover:text-gray-200 text-lg" %>
-                    <%= link_to "Messages", messages_path, class: "hover:text-gray-200 text-lg" %>
+                    <%# link_to "Messages", messages_path, class: "hover:text-gray-200 text-lg" %>
                     <li><a class="hover:text-gray-200 text-lg" href="#">Notifications</a></li>
                     <%# <li><a class="hover:text-gray-200 text-lg" href="#">My Ads</a></li> %>
                     <%= link_to "My Ads", products_path, class: "hover:text-gray-200 text-lg" %>

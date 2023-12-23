@@ -1,5 +1,5 @@
-  <div class="bg-gray-200 px-2 pt-2 py-4 md:px-4 md:pt-4 md:py-6">
-    <%= form_with(model: message , class: "flex w-full items-center", url: conversation_messages_path(@conversation)) do |form| %>
+  <div class="bg-gray-200 px-2 pt-2 py-4 md:px-4 md:pt-4 md:py-6 new_message">
+    <%= form_with(model: [message.conversation, message] , class: "flex w-full items-center") do |form| %>
       <div class="bg-white rounded-3xl flex-none w-10/12 sm:w-11/12" id="message-form">
           <%= form.rich_text_area :content %>
       </div>
@@ -10,5 +10,8 @@
             </svg>
         <% end %>
       </div>
+    <% end %>
+    <% if request.url.include?("edit") %>
+    <div class="text-center my-4"> <%= link_to "cancel", conversation_messages_path(message.conversation),  class: "btn-primary text-xs  px-3 py-1" %></div>
     <% end %>
 </div>

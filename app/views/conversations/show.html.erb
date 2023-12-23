@@ -18,9 +18,6 @@
       <%= link_to "view", conversation_messages_path(@conversation), data: {turbo: false} %>
     </div>
 
-    <%= turbo_frame_tag "new_message", class: "w-full items-center  fixed bottom-0 md:relative mb-0" do  %>
-      <%# render "/messages/new" %>
-    <% end %>
 
   </div>
 <% end %>

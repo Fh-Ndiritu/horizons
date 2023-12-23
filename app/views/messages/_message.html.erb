@@ -1,15 +1,16 @@
 <div id="<%= dom_id message %>">
-  <% is_other_user = message.user != current_user  %>
+ <%= turbo_frame_tag dom_id(message) do %>
+     <% is_other_user = message.user != current_user  %>
   <% styles = is_other_user ? "bg-green-100 float-left" : "bg-white float-right" %>
-
-  <div class="rounded-xl p-2 block my-4  w-11/12 sm:w-3/5 <%= styles%>">
-      <div class="block">
-          <p class="text-sm"><%= message.content %></p>
-      </div>
-      <div class="text-right text-gray-500 text-xs">
-          <%= message.created_at.strftime("%H:%M %p") %>  
-      </div>
-      
-  </div>
-
+        <div class="rounded-xl p-2 block my-4  w-11/12 sm:w-3/5 <%= styles%>">
+            <%= link_to "edit", edit_message_path(message), data: {turbo_frame: "edit_form", action: "messages#toggleforms"} %>
+            <div class="block">
+                <p class="text-sm"><%= message.content %></p>
+            </div>
+            <div class="text-right text-gray-500 text-xs">
+                <%= message.created_at.strftime("%H:%M %p") %>  
+            </div>
+            
+        </div>
+ <% end %>
 </div>

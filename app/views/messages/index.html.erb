@@ -1,36 +1,38 @@
 <%= turbo_frame_tag "messages" do %>
-  <div class="sm:px-2 w-full h-screen sm:h-full">
-    <%= link_to product_path(@conversation.product), data: {turbo: false}, class: "flex shadow-lg mb-2 p-2" do %>
-        <div class="">
-          <% if @conversation.product.images.present? %>
-              <%= image_tag(@conversation.product.images.first.variant(:thumb), class: "w-full h-20 w-auto sm:h-auto  sm:w-24 rounded") %>
-          <% end %>
-        </div>
-        <div class="block px-2">
-            <p class=" text-bold text-base"><%= @conversation.product.title %></p>
-            <sm class="text-green-500 sm"><%= @conversation.product.price %> Ksh</sm>
-            <div class="text-xs"><%= other_user(@conversation)&.user_name %></div>
-        </div>
-    <% end %>
-
-    <div class="bg-gray-200  p-4 pb-20 md:pb-2 h-auto w-full overflow-x-hidden h-min-screen sm:h-5/6 sm:overflow-y-scroll custom_scroll_bar ">
-      <div id="messages" class="min-w-full">
-            <% @messages.group_by{|msg| msg.created_at.to_date }.each do |date, messages|%>
-            <div class=" block my-4  text-center  float-right w-full">
-              <span class="rounded-xl p-2 bg-white text-sm text-bold-xl"><%= nice_date(date) %></span>
-            </div>
-            <%= turbo_frame_tag "messages_#{date}" do %>
-              <% render messages %>
+  <div class="sm:px-2 w-full h-screen sm:h-full" data-controller="messages">
+      <%= link_to product_path(@conversation.product), data: {turbo: false}, class: "flex shadow-lg mb-2 p-2" do %>
+          <div class="">
+            <% if @conversation.product.images.present? %>
+                <%= image_tag(@conversation.product.images.first.variant(:thumb), class: "w-full h-20 w-auto sm:h-auto  sm:w-24 rounded") %>
             <% end %>
-          <% end %>
+          </div>
+          <div class="block px-2">
+              <p class=" text-bold text-base"><%= @conversation.product.title %></p>
+              <sm class="text-green-500 sm"><%= @conversation.product.price %> Ksh</sm>
+              <div class="text-xs"><%= other_user(@conversation)&.user_name %></div>
+          </div>
+      <% end %>
+
+      <div class="bg-gray-200  p-4 pb-20 md:pb-2 h-auto w-full overflow-x-hidden h-min-screen sm:h-5/6 sm:overflow-y-scroll custom_scroll_bar ">
+        <div id="messages" class="min-w-full">
+              <% @messages.group_by{|msg| msg.created_at.to_date }.each do |date, messages|%>
+              <div class=" block my-4  text-center  float-right w-full">
+                <span class="rounded-xl p-2 bg-white text-sm text-bold-xl"><%= nice_date(date) %></span>
+              </div>
+              <%= turbo_frame_tag "messages_#{date}" do %>
+                <% render messages %>
+              <% end %>
+            <% end %>
+        </div>
       </div>
+
+    <div class="msgforms" data-messages-target="msgforms">
+        <%= turbo_frame_tag @conversation.messages.new, partial: "messages/form", message: @conversation.messages.new, class: "new_form"  do %>
+          <%= render "form", message: @conversation.messages.new %>
+        <% end %>
+          <%= turbo_frame_tag "edit_form", class: "edit_form" %>
     </div>
 
-
-    <%= turbo_frame_tag @conversation.messages.new, partial: "messages/form", message: @conversation.messages.new  do %>
-      <%= render "form", message: @conversation.messages.new %>
-  <% end %>
-
-<% end %>
+    <% end %>
 
 </div>
