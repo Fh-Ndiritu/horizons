@@ -1,5 +1,5 @@
 <div id="<%= dom_id message %>">
- <%= turbo_frame_tag dom_id(message) do %>
+ <%= turbo_frame_tag dom_id(message), data: {action: "turbo:frame-render->messages#cancelEdit"} do %>
      <% is_other_user = message.user != current_user  %>
   <% styles = is_other_user ? "bg-green-100 float-left" : "bg-white float-right" %>
         <div class="rounded-xl p-2 block my-4  w-11/12 sm:w-3/5 <%= styles%>">

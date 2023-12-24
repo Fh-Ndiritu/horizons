@@ -12,6 +12,8 @@
       </div>
     <% end %>
     <% if request.url.include?("edit") %>
-    <div class="text-center my-4"> <%= link_to "cancel", conversation_messages_path(message.conversation),  class: "btn-primary text-xs  px-3 py-1" %></div>
+    <div class="text-center my-4"> 
+      <div class="btn-primary text-xs  px-3 py-1" data-action="click->messages#cancelEdit">Cancel</div>
+    </div>
     <% end %>
 </div>
