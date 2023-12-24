@@ -4,6 +4,7 @@
   <% styles = is_other_user ? "bg-green-100 float-left" : "bg-white float-right" %>
         <div class="rounded-xl p-2 block my-4  w-11/12 sm:w-3/5 <%= styles%>">
             <%= link_to "edit", edit_message_path(message), data: {turbo_frame: "edit_form", action: "messages#toggleforms"} %>
+            <%=  button_to  "Delete", message_path(message), method: :delete %>
             <div class="block">
                 <p class="text-sm"><%= message.content %></p>
             </div>
