@@ -202,5 +202,14 @@
       .edit_form {
          display: block;
       }
+
 }
+
+#messages .buttons .buttons_list{
+   display: none;
+}
+#messages .buttons.visible .buttons_list{
+   display: block;
+}
+
 
