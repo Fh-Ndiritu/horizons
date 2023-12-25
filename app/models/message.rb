@@ -4,7 +4,8 @@ class Message < ApplicationRecord
   has_rich_text :content
   has_many_attached :files
 
-  default_scope { order(created_at: :asc)}
+  scope :asc, -> { order(created_at: :asc)}
+  
   ThinkingSphinx::Callbacks.append(self, :behaviours =>[:real_time])
 
   include ActionText::Attachable

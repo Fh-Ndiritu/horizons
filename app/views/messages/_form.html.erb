@@ -1,4 +1,4 @@
-  <div class="bg-gray-200 px-2 pt-2 py-4 md:px-4 md:pt-4 md:py-6 new_message">
+  <div class="p-4 new_message">
     <%= form_with(model: [message.conversation, message] , class: "flex w-full items-center") do |form| %>
       <div class="bg-white rounded-3xl flex-none w-10/12 sm:w-11/12" id="message-form">
           <%= form.rich_text_area :content %>

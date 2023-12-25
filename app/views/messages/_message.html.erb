@@ -3,29 +3,29 @@
     <%= turbo_frame_tag dom_id(message), data: {action: "turbo:frame-render->messages#cancelEdit"} do %>
         <% is_other_user = message.user != current_user  %>
     <% styles = is_other_user ? "bg-green-100 float-left" : "bg-white float-right" %>
-            <div class="rounded-xl p-2 block my-4  w-11/12 sm:w-3/5 <%= styles%>">
+            <div class="rounded-xl p-2 block my-4  w-11/12 sm:w-3/5 <%= styles%>" >
                 <div class="flex w-full min-h-4 relative justify-end">
-                        <div 
-                        data-controller="messages"
-                        class="block relative buttons" 
-                        data-messages-view-class="visible"
-                        data-messages-target="actionButton" 
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="4" viewBox="0 0 128 512"
-                            data-action="click->messages#showButtons"
-                            class="cursor-pointer">
-                                <path d="M64 360a56 56 0 1 0 0 112 56 56 0 1 0 0-112zm0-160a56 56 0 1 0 0 112 56 56 0 1 0 0-112zM120 96A56 56 0 1 0 8 96a56 56 0 1 0 112 0z"/>
-                            </svg>
-                            <div class="buttons_list absolute right-4 top-0 bg-white-100 p-1 ">
-                                <%= link_to "Edit", 
-                                edit_message_path(message), 
-                                data: {turbo_frame: "edit_form", 
-                                action: "messages#toggleforms"},
-                                class: "text-xs" 
-                                %>
-                                <%=  button_to  "Delete", message_path(message), method: :delete,  class: "text-xs"  %>
-                            </div>
+                <% if !is_other_user %>
+                    <div 
+                    class="block relative buttons visible" 
+                    data-messages-view-class="visible"
+                    data-messages-target="actionButton">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="16" width="4" viewBox="0 0 128 512"
+                        data-action="click->messages#showButtons"
+                        class="cursor-pointer">
+                            <path d="M64 360a56 56 0 1 0 0 112 56 56 0 1 0 0-112zm0-160a56 56 0 1 0 0 112 56 56 0 1 0 0-112zM120 96A56 56 0 1 0 8 96a56 56 0 1 0 112 0z"/>
+                        </svg>
+                        <div class="buttons_list absolute right-4 top-0 bg-white-100 p-1 ">
+                            <%= link_to "Edit", 
+                            edit_message_path(message), 
+                            data: {turbo_frame: "edit_form", 
+                            action: "messages#toggleforms"},
+                            class: "text-xs" 
+                            %>
+                            <%=  button_to  "Delete", message_path(message), method: :delete,  class: "text-xs"  %>
                         </div>
+                    </div>
+                <% end %>
 
                 </div>
 

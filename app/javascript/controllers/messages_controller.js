@@ -7,7 +7,6 @@ export default class extends Controller {
 
   connect() {
     document.addEventListener('turbo:before-stream-render', (event) => {
-
       const frame = event.detail.newStream;
       if (frame.target.includes("message")) {
         this.cancelEdit()
@@ -16,8 +15,7 @@ export default class extends Controller {
   }
   
   toggleforms() {
-    // alert( this.msgformsTarget)
-    // this.msgformsTarget.classList.add("editing")
+    this.msgformsTarget.classList.add("editing")
   }
 
   showButtons() {
@@ -26,7 +24,7 @@ export default class extends Controller {
   }
   
   cancelEdit() {
-    // this.msgformsTarget.classList.remove("editing")
+    this.msgformsTarget.classList.remove("editing")
   }
   
 }
