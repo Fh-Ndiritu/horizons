@@ -16,7 +16,8 @@ export default class extends Controller {
   }
   
   toggleforms() {
-    this.msgformsTarget.classList.add("editing")
+    // alert( this.msgformsTarget)
+    // this.msgformsTarget.classList.add("editing")
   }
 
   showButtons() {
@@ -25,7 +26,7 @@ export default class extends Controller {
   }
   
   cancelEdit() {
-    this.msgformsTarget.classList.remove("editing")
+    // this.msgformsTarget.classList.remove("editing")
   }
   
 }

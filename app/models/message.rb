@@ -7,22 +7,26 @@ class Message < ApplicationRecord
   default_scope { order(created_at: :asc)}
   ThinkingSphinx::Callbacks.append(self, :behaviours =>[:real_time])
 
-include ActionText::Attachable
+  include ActionText::Attachable
   def to_attachment_partial_path
     "messages/attachments"
   end
 
+  after_create_commit -> { 
+    broadcast_append_to "messages_#{self.created_at.to_date}", 
+    partial: "messages/message", 
+    locals: { message: self, current_user: self.user } ,
+    target: "messages_#{self.created_at.to_date}"
+  }
 
-
-    # after_create_commit -> { broadcast_append_to "messages", partial: "messages/message", locals: { message: self, current_user: self.user } , target: "chat_messages"}
-
-  # after_update_commit -> { 
-  #   broadcast_replace_to "chat_messages", 
-  #   partial: "messages/message",
-  #   locals: {  message: self , current_user: self.user},
-  #   target: "chat_messages" 
-  # }
-  # after_destroy_commit -> { broadcast_remove_to "quotes" }
+  after_update_commit -> { 
+    broadcast_update_to self, 
+    partial: "messages/message", 
+    locals: { message: self, current_user: self.user } ,
+    target: self
+  }
+  
+  after_destroy_commit -> { broadcast_remove_to "messages_#{self.created_at.to_date}" }
 
 
 

@@ -19,6 +19,7 @@
               <div class=" block my-4  text-center  float-right w-full">
                 <span class="rounded-xl p-2 bg-white text-sm text-bold-xl"><%= nice_date(date) %></span>
               </div>
+              <%= turbo_stream_from "messages_#{date}" %>
               <%= turbo_frame_tag "messages_#{date}" do %>
                 <% render messages %>
               <% end %>
@@ -26,7 +27,7 @@
         </div>
       </div>
 
-    <div class="msgforms" data-messages-target="msgforms">
+    <div data-controller="messages" class="msgforms editing" data-messages-target="msgforms">
         <%= turbo_frame_tag @conversation.messages.new, partial: "messages/form", message: @conversation.messages.new, class: "new_form"  do %>
           <%= render "form", message: @conversation.messages.new %>
         <% end %>
