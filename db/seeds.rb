@@ -34,4 +34,4 @@ end
 
 
 
-puts "generated users #{User.first.email}"
+puts "generated users #{User.first.email} #{User.second.email}"

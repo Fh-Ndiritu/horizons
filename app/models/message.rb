@@ -29,6 +29,9 @@ class Message < ApplicationRecord
   
   after_destroy_commit -> { broadcast_remove_to "messages_#{self.created_at.to_date}" }
 
+  scope :unread, ->{where.not(read: true)}
+  scope :other_users, ->(current_user){where.not(user: current_user)}
+
 
 
 

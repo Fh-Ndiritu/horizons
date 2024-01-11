@@ -4,7 +4,7 @@ class MessagesController < ApplicationController
 
   # GET /messages or /messages.json
   def index
-     
+    @conversation.messages.unread.other_users(current_user).update(read: true)
     @messages = @conversation.messages.includes(:user).asc.last(100)
   end
 
