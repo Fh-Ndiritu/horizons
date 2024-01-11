@@ -5,7 +5,7 @@ class MessagesController < ApplicationController
   # GET /messages or /messages.json
   def index
      
-    @messages = @conversation.messages.includes(:user).asc.last(10)
+    @messages = @conversation.messages.includes(:user).asc.last(100)
   end
 
   # GET /messages/1 or /messages/1.json

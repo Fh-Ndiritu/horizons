@@ -1,5 +1,5 @@
 <%= turbo_frame_tag "messages" do %>
-  <div class=" w-full h-screen overflow-visible sm:h-full relative bg-gray-200" data-controller="messages">
+  <div class=" w-full h-screen overflow-visible sm:h-full relative bg-gray-200" data-controller="messages" data-main-target="mobileMsgs">
       <%= link_to product_path(@conversation.product), data: {turbo: false}, class: "flex shadow-lg h-1/6 bg-white mb-2 p-2" do %>
           <div class="">
             <% if @conversation.product.images.present? %>
@@ -13,8 +13,9 @@
           </div>
       <% end %>
 
-      <div class="p-4 pb-10 bg-gray-200  h-5/6 w-full overflow-x-hidden sm:overflow-y-scroll custom_scroll_bar ">
-        <div id="messages" class="min-w-full">
+      <div class=" p-4 pb-10 bg-gray-200  h-5/6 w-full overflow-x-hidden overflow-y-scroll custom_scroll_bar relative"
+       data-messages-target="convMessages">
+        <div id="messages" class="min-w-full ">
               <% @messages.group_by{|msg| msg.created_at.to_date }.each do |date, messages|%>
               <div class=" block my-4  text-center  float-right w-full">
                 <span class="rounded-xl p-2 bg-white text-sm text-bold-xl"><%= nice_date(date) %></span>
@@ -25,8 +26,9 @@
               <% end %>
             <% end %>
         </div>
+         <div data-messages-target="msgAnchor" class="bg-red-900 p2  bottom-0 float-right"></div>
+                      
       </div>
-
     <div  class="msgforms bg-gray-200  absolute top-100 w-full flex-none " data-messages-target="msgforms">
         <%= turbo_frame_tag @conversation.messages.new, partial: "messages/form", message: @conversation.messages.new, class: "new_form"  do %>
           <%= render "form", message: @conversation.messages.new %>

@@ -11,9 +11,9 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="custom_scroll_bar">
+  <body class="" data-controller="main"  data-main-target="wrapper">
     <%= render "layouts/header" %>
-    <main class="min-h-screen py-8 w-screen">
+    <main class="min-h-screen py-8 w-screen " >
       <%= yield %>
     </main>
     <%= render "layouts/mobile_menu" %>

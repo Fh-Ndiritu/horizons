@@ -109,11 +109,11 @@
       border-radius: 4px;
       /*outline: 1px solid slategrey;*/
    }
-      body.custom_scroll_bar::-webkit-scrollbar-thumb {
+      body::-webkit-scrollbar-thumb {
          display: initial !important;
       }
    
-      body.custom_scroll_bar::-webkit-scrollbar {
+      body::-webkit-scrollbar {
          width: 8px;
          display: initial !important;
          background-color: rgba(229, 231, 235, var(--bg-opacity));

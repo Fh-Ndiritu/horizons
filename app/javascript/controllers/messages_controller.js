@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="messages"
 export default class extends Controller {
-  static targets = ["msgforms", "actionButton"]
+  static targets = ["msgforms", "convMessages", "msgAnchor"]
   static classes = ["view"]
 
   connect() {
@@ -11,7 +11,8 @@ export default class extends Controller {
       if (frame.target.includes("message")) {
         this.cancelEdit()
       }
-      });
+    });
+    this.msgAnchorTarget.scrollIntoView({ behavior: "smooth" })
   }
   
   toggleforms() {
