@@ -18,10 +18,9 @@ export default class extends Controller {
     this.msgformsTarget.classList.add("editing")
   }
 
-  showButtons() {
-    this.actionButtonTargets.forEach(btn => { console.log(btn.classList); btn.classList.remove(this.viewClass)})
-    this.actionButtonTarget.classList.add(this.viewClass)
-  }
+  mouseEnter() {
+   alert("hey")
+ }
   
   cancelEdit() {
     this.msgformsTarget.classList.remove("editing")

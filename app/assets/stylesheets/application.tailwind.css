@@ -19,5 +19,10 @@
    .flash.alert{
     @apply text-sm text-red-400 text-center; 
    }
+  .link {
+    @apply text-accent hover:text-accent2 !important;
+    }
  }
+
+
  @import 'actiontext.css';

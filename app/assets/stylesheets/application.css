@@ -132,7 +132,7 @@
          margin: 0px;
          padding: .4rem .8rem;
          outline: none;
-         font-size: .8rem;
+         font-size: 1rem;
          line-height: 1.4rem;
       }
    
@@ -207,9 +207,18 @@
 
 #messages .buttons .buttons_list{
    display: none;
+   background-color: rgb(245, 245, 245);
+   a{
+      color: accent;
+   }
 }
 #messages .buttons.visible .buttons_list{
    display: block;
 }
 
+.base_svg{
+   height: 26px;
+   width:  26px;
+   padding: 2px;
+}
 
