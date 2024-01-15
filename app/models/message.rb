@@ -1,11 +1,10 @@
 class Message < ApplicationRecord
+  after_save_commit :set_participants
   belongs_to :user
   belongs_to :conversation
   has_rich_text :content
   has_many_attached :files
-
   scope :asc, -> { order(created_at: :asc)}
-  
   ThinkingSphinx::Callbacks.append(self, :behaviours =>[:real_time])
 
   include ActionText::Attachable
@@ -31,6 +30,16 @@ class Message < ApplicationRecord
 
   scope :unread, ->{where.not(read: true)}
   scope :other_users, ->(current_user){where.not(user: current_user)}
+
+
+  private
+
+  def set_participants  
+    if self.conversation.replied_by.nil? && self.conversation.started_by != self.user.id
+          self.conversation.update replied_by: self.user.id
+    end
+  end
+
 
 
 

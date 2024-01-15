@@ -4,7 +4,12 @@ class ConversationsController < ApplicationController
 
   # GET /conversations or /conversations.json
   def index
-    @conversations = Conversation.all.includes(:product)
+    user_products = current_user.products.pluck(:id)
+    @conversations = Conversation.where(started_by: current_user.id).includes(:product).or(
+      Conversation.where(replied_by: current_user.id).includes(:product).or(
+        Conversation.where(product: user_products).includes(:product)
+      )
+    )
   end
 
   # GET /conversations/1 or /conversations/1.json
@@ -13,7 +18,7 @@ class ConversationsController < ApplicationController
 
   # GET /conversations/new
   def new
-    @conversation = @product.conversations.create 
+    @conversation = @product.conversations.create(started_by: current_user.id) 
     redirect_to new_conversation_message_path(@conversation)
   end
 
@@ -25,7 +30,7 @@ class ConversationsController < ApplicationController
   def create
     @conversation = Conversation.new(conversation_params)
 
-    respond_to do |format|
+    respond_to do |format| 
       if @conversation.save
         format.html { redirect_to conversation_url(@conversation), notice: "Conversation was successfully created." }
         format.json { render :show, status: :created, location: @conversation }

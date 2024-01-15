@@ -11,7 +11,7 @@
   </div>
 
  <%# turbo_frame_tag product.conversations.new do  %>
-      <%= link_to "Message Seller", new_product_conversation_path(product), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= link_to "Message Seller", new_product_conversation_path(product), data: {turbo: false}, class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
 <%# <% end %> %>
   <% if action_name != "show" %>
       <%= link_to "Show this product", product, data: {turbo_frame: "_top"}, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
