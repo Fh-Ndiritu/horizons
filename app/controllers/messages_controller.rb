@@ -1,11 +1,12 @@
 class MessagesController < ApplicationController
+  include Pagy::Backend
   before_action :set_message, only: %i[ show edit update destroy ]
   before_action :set_conversation, only: %i[new create index]
 
   # GET /messages or /messages.json
   def index
     @conversation.messages.unread.other_users(current_user).update(read: true)
-    @messages = @conversation.messages.includes(:user).asc.last(100)
+    @pagy, @messages = pagy(@conversation.messages.includes(:user).asc)
   end
 
   # GET /messages/1 or /messages/1.json

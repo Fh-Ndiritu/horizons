@@ -16,14 +16,21 @@
       <div class=" p-4 pb-10 bg-gray-200  h-5/6 w-full overflow-x-hidden overflow-y-scroll custom_scroll_bar relative"
        data-messages-target="convMessages">
         <div id="messages" class="min-w-full ">
-              <% @messages.group_by{|msg| msg.created_at.to_date }.each do |date, messages|%>
-              <div class=" block my-4  text-center  float-right w-full">
-                <span class="rounded-xl p-2 bg-white text-sm text-bold-xl"><%= nice_date(date) %></span>
-              </div>
-              <%= turbo_stream_from "messages_#{date}" %>
-              <%= turbo_frame_tag "messages_#{date}" do %>
-                <% render messages %>
+            <%= turbo_frame_tag "messages_#{@pagy.page}" do  %>
+                <% @messages.group_by{|msg| msg.created_at.to_date }.each do |date, messages|%>
+                  <div class=" block my-4  text-center  float-right w-full">
+                    <span class="rounded-xl p-2 bg-white text-sm text-bold-xl"><%= nice_date(date) %></span>
+                  </div>
+                <%= turbo_stream_from "messages_#{date}" %>
+                <%= turbo_frame_tag "messages_#{date}" do %>
+                  <% render messages %>
+                <% end %>
               <% end %>
+              <% unless  @pagy.page == @pagy.pages%> 
+                <%= turbo_frame_tag "messages_#{@pagy.next}", src: messages_path(page: @pagy.next), loading: "lazy" do%>
+                  <div>Loading .. </div>
+                  <% end %>
+                <% end  %>
             <% end %>
         </div>
          <div data-messages-target="msgAnchor" class="bg-red-900 p2  bottom-0 float-right"></div>

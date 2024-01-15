@@ -58,6 +58,8 @@ gem 'foreman', '~> 0.87.2'
 gem 'thinking-sphinx', '~> 5.5', '>= 5.5.1'
 gem 'mysql2', '~> 0.5.3'
 
+gem 'pagy', '~> 6.4'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
